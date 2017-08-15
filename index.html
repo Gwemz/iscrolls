@@ -212,9 +212,18 @@
             var el, li, i;
             el = document.getElementById('thelist');
 
+            //var flickerAPITop=;
+            //获取前一日数据
+            /*$.getJSON(flickerAPITop, {}).done(function (data) {
+                $.each(data.STORIES.stories, function (i, item) {
+                    // $('<div class="title" id=' + item.id + '><span>' + item.title + '</span><img class="img" src="' + item.images[0] + '"></img></div>').appendTo($('#content'));
+                    $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img src="'+item.images[0]+'" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').insertBefore(li, el.childNodes[0]);
+                })
+            });*/
+
             for (i = 0; i < 3; i++) {
                 li = document.createElement('li');
-                li.innerText = 'Generated row ' + (++generatedCount);
+                li.innerText = '您获取到的数据条数为' + (++generatedCount);
                 el.insertBefore(li, el.childNodes[0]);
             }
 
@@ -246,6 +255,7 @@
         myScroll = new iScroll('wrapper', {
             useTransition: true,
             topOffset: pullDownOffset,
+            // onRefresh参数方法调整刷新后的界面结构
             onRefresh: function () {
                 if (pullDownEl.className.match('loading')) {
                     pullDownEl.className = '';
@@ -255,6 +265,7 @@
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载完成';
                 }
             },
+            // 通过onScrollMove参数方法判断当前滚动时到顶端还是底端
             onScrollMove: function () {
                 if (this.y > 5 && !pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'flip';
@@ -274,6 +285,7 @@
                     this.maxScrollY = pullUpOffset;
                 }
             },
+            // 通过onScrollEnd参数方法触发加载新数据，再通过refresh方法重新渲染界面；
             onScrollEnd: function () {
                 if (pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'loading';
@@ -299,6 +311,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(loaded, 200);
     }, false);
+    console.log(new Date(new Date()-24*60*60*1000));
 </script>
 <script src="index.js"></script>
 </html>
