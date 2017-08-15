@@ -1,0 +1,14 @@
+.gwt_home {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.gwt_home img {
+  width: 30%;
+  height: auto;
+}
+.gwt_home .caption {
+  width: 70%;
+}
