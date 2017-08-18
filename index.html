@@ -180,9 +180,9 @@
 <div id="header">
     <a href="http://gwem.tk"></a>
 </div>
-<section class="page">
+<!--<section class="page">
     <img src="https://pic3.zhimg.com/v2-5af460972557190bd4306ad66f360d4a.jpg" alt="启动图片">
-</section>
+</section>-->
 <div id="wrapper">
     <div id="scroller">
         <div id="pullDown">
@@ -229,14 +229,15 @@
             var el, li, i;
             el = document.getElementById('thelist');
 
-            //var flickerAPITop=;
+            var flickerAPITop='https://news-at.zhihu.com/api/4/news/before/'+show();
+            console.log(flickerAPITop);
             //获取前一日数据
-            /*$.getJSON(flickerAPITop, {}).done(function (data) {
+            $.getJSON(flickerAPITop, {}).done(function (data) {
                 $.each(data.STORIES.stories, function (i, item) {
                     // $('<div class="title" id=' + item.id + '><span>' + item.title + '</span><img class="img" src="' + item.images[0] + '"></img></div>').appendTo($('#content'));
                     $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img src="'+item.images[0]+'" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').insertBefore(li, el.childNodes[0]);
                 })
-            });*/
+            });
 
             /*for (i = 0; i < 3; i++) {
                 li = document.createElement('li');
@@ -346,7 +347,25 @@
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(loaded, 200);
     }, false);
-    console.log(new Date(new Date()-24*60*60*1000));
+
+    // 获取日期
+    function show(){
+        var mydate = new Date();
+        var str = "" + mydate.getFullYear();
+        if(mydate.getMonth()<10){
+            str = str + '0' + (mydate.getMonth()+1);
+            str += mydate.getDate();
+        }
+        else if(mydate.getDate()<10){
+            str += (mydate.getMonth()+1);
+            str = str + '0' + mydate.getDate();
+        }else{
+            str += (mydate.getMonth()+1);
+            str += mydate.getDate();
+        }
+        return str;
+    }
+
 </script>
 <script src="index.js"></script>
 </html>
