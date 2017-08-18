@@ -168,6 +168,10 @@
                 -webkit-transform: rotate(360deg) translateZ(0);
             }
         }
+        .iScrollHover {
+            background: #cccccc !important;
+            color:#eee !important;
+        }
     </style>
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -176,6 +180,9 @@
 <div id="header">
     <a href="http://gwem.tk"></a>
 </div>
+<section class="page">
+    <img src="https://pic3.zhimg.com/v2-5af460972557190bd4306ad66f360d4a.jpg" alt="启动图片">
+</section>
 <div id="wrapper">
     <div id="scroller">
         <div id="pullDown">
@@ -207,6 +214,16 @@
         pullUpEl, pullUpOffset,
         generatedCount = 0;
 
+    var hoverClassRegEx = new RegExp('(^|\\s)iScrollHover(\\s|$)'),
+        removeClass = function () {
+            if (this.hoverTarget) {
+                clearTimeout(this.hoverTimeout);
+                this.hoverTarget.className = this.hoverTarget.className.replace(hoverClassRegEx, '');
+                this.target = null;
+            }
+        };
+
+    // 下拉刷新
     function pullDownAction() {
         setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
             var el, li, i;
@@ -221,26 +238,27 @@
                 })
             });*/
 
-            for (i = 0; i < 3; i++) {
+            /*for (i = 0; i < 3; i++) {
                 li = document.createElement('li');
                 li.innerText = '您获取到的数据条数为' + (++generatedCount);
                 el.insertBefore(li, el.childNodes[0]);
-            }
+            }*/
 
             myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
         }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
     }
 
+    // 上拉刷新
     function pullUpAction() {
         setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
             var el, li, i;
             el = document.getElementById('thelist');
 
-            for (i = 0; i < 3; i++) {
+            /*for (i = 0; i < 3; i++) {
                 li = document.createElement('li');
                 li.innerText = 'Generated row ' + (++generatedCount);
                 el.appendChild(li, el.childNodes[0]);
-            }
+            }*/
 
             myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
         }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
@@ -296,7 +314,24 @@
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中';
                     pullUpAction();	// Execute custom function (ajax call?)
                 }
-            }
+            },
+            onBeforeScrollStart: function (e) {
+                var target = e.target;
+
+                clearTimeout(this.hoverTimeout);
+
+                while (target.nodeType != 1) target = target.parentNode;
+
+                this.hoverTimeout = setTimeout(function () {
+                    if (!hoverClassRegEx.test(target.className)) target.className = target.className ? target.className + ' iScrollHover' : 'iScrollHover';
+                }, 80);
+
+                this.hoverTarget = target;
+
+                e.preventDefault();
+            },
+            onScrollMove: removeClass,
+            onBeforeScrollEnd: removeClass
         });
 
         setTimeout(function () {

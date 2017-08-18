@@ -19,4 +19,8 @@ $(function () {
     $('#page_content').on('click', '.back', function () {
         $('#page_content').removeClass('active');
     })
+    //标题页隐藏
+    setInterval(function(){
+        $('.page').hide();
+    },2000)
 })
