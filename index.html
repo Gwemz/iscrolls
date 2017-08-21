@@ -7,10 +7,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="referrer" content="never">
+    <title>上拉刷新/下拉刷新</title>
+    <meta name="description" content="我的头条">
+    <meta name="keywords" content="我的头条">
+    <link rel="shortcut icon" href="./imgs/night.png" type="image/x-icon">
     <!--css样式引入-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>上拉刷新/下拉刷新</title>
     <style type="text/css" media="all">
         body, ul, li {
             padding: 0;
@@ -126,7 +129,7 @@
             float: left;
             width: 40px;
             height: 40px;
-            background: url(refresh.png) 0 0 no-repeat;
+            background: url(./imgs/refresh.png) 0 0 no-repeat;
             -webkit-background-size: 100% 100%;
             background-size: 100% 100%;
             -webkit-transition-property: -webkit-transform;
@@ -168,12 +171,11 @@
                 -webkit-transform: rotate(360deg) translateZ(0);
             }
         }
-        .iScrollHover {
-            background: #cccccc !important;
-            color:#eee !important;
-        }
     </style>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <!--IE7兼容-->
+    <link rel="stylesheet" href="./css/font-awesome-ie7.min.css">
 </head>
 <body>
 
@@ -197,6 +199,14 @@
         </div>
     </div>
 </div>
+<section id="content">
+    <div class="back  icon-chevron-left">
+
+    </div>
+    <div class="page_content">
+
+    </div>
+</section>
 <div id="footer"></div>
 
 </body>
@@ -205,7 +215,7 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="./iscroll.js"></script>
+<script type="text/javascript" src="./js/iscroll.js"></script>
 
 <script type="text/javascript">
 
@@ -213,15 +223,6 @@
         pullDownEl, pullDownOffset,
         pullUpEl, pullUpOffset,
         generatedCount = 0;
-
-    var hoverClassRegEx = new RegExp('(^|\\s)iScrollHover(\\s|$)'),
-        removeClass = function () {
-            if (this.hoverTarget) {
-                clearTimeout(this.hoverTimeout);
-                this.hoverTarget.className = this.hoverTarget.className.replace(hoverClassRegEx, '');
-                this.target = null;
-            }
-        };
 
     // 下拉刷新
     function pullDownAction() {
@@ -315,24 +316,7 @@
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中';
                     pullUpAction();	// Execute custom function (ajax call?)
                 }
-            },
-            onBeforeScrollStart: function (e) {
-                var target = e.target;
-
-                clearTimeout(this.hoverTimeout);
-
-                while (target.nodeType != 1) target = target.parentNode;
-
-                this.hoverTimeout = setTimeout(function () {
-                    if (!hoverClassRegEx.test(target.className)) target.className = target.className ? target.className + ' iScrollHover' : 'iScrollHover';
-                }, 80);
-
-                this.hoverTarget = target;
-
-                e.preventDefault();
-            },
-            onScrollMove: removeClass,
-            onBeforeScrollEnd: removeClass
+            }
         });
 
         setTimeout(function () {
@@ -367,5 +351,5 @@
     }
 
 </script>
-<script src="index.js"></script>
+<script src="./js/index.js"></script>
 </html>

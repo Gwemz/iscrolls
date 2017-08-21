@@ -7,15 +7,6 @@ $(function () {
         })
     });
 
-    $('#content').on('click', '.title', function () {
-        $('#page_content').addClass('active');
-        var id = $(this).attr('id');
-        $.getJSON("https://zhihu-daily.leanapp.cn/api/v1/contents/" + id + "").done(function (data) {
-            console.log(data.CONTENTS);
-            // $('<link rel="stylesheet" href="'+data.CONTENTS.css[0]+'"></link>').appendTo($('head'));
-            $('#page_content .content')[0].innerHTML = data.CONTENTS.body;
-        })
-    })
     $('#page_content').on('click', '.back', function () {
         $('#page_content').removeClass('active');
     })
@@ -23,4 +14,22 @@ $(function () {
     setInterval(function(){
         $('.page').hide();
     },2000)
+
+    //内容页信息展示
+    $('#thelist').on('click','li',function () {
+        $('#content').addClass('active');
+        var id=$(this).find('.gwt_home').attr('id');
+        console.log(id);
+        $.getJSON("https://zhihu-daily.leanapp.cn/api/v1/contents/" + id + "").done(function (data) {
+            console.log(data.CONTENTS);
+            $('<link rel="stylesheet" href="'+data.CONTENTS.css[0]+'"></link>').appendTo($('head'));
+            $('.page_content')[0].innerHTML = data.CONTENTS.body;
+            $('.headline').remove();
+        })
+    })
+
+    //返回
+    $('.back').on('click',function () {
+        $('#content').removeClass('active');
+    })
 })
