@@ -19,9 +19,7 @@ $(function () {
     $('#thelist').on('click','li',function () {
         $('#content').addClass('active');
         var id=$(this).find('.gwt_home').attr('id');
-        console.log(id);
         $.getJSON("https://zhihu-daily.leanapp.cn/api/v1/contents/" + id + "").done(function (data) {
-            console.log(data.CONTENTS);
             $('<link rel="stylesheet" href="'+data.CONTENTS.css[0]+'"></link>').appendTo($('head'));
             $('.page_content')[0].innerHTML = data.CONTENTS.body;
             $('.headline').remove();
@@ -32,4 +30,11 @@ $(function () {
     $('.back').on('click',function () {
         $('#content').removeClass('active');
     })
+
+    //点击按钮回到页面顶部
+    $('.top').on('click',function () {
+        $('#content').animate({scrollTop: 0},1000);
+    })
+    //手指右滑返回主页面
+    
 })
