@@ -36,5 +36,5 @@ $(function () {
         $('#content').animate({scrollTop: 0},1000);
     })
     //手指右滑返回主页面
-    
+
 })
