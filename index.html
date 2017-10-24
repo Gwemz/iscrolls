@@ -65,15 +65,20 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="./js/iscroll.js"></script>
 
-<script type="text/javascript">
 
+<script src="./js/index.js"></script>
+<script type="text/javascript">
+    var img = document.getElementsByTagName('img');
+    img.onload = function(){
+        
+    }
     var myScroll,
         pullDownEl, pullDownOffset,
         pullUpEl, pullUpOffset,
         generatedCount = 0;
 
     function pullDownAction () {
-        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+        setTimeout(function () {    // <-- Simulate network congestion, remove setTimeout from production!
             var el, li, i;
             el = document.getElementById('thelist');
 
@@ -83,12 +88,12 @@
                 el.insertBefore(li, el.childNodes[0]);
             }
 
-            myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
-        }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+            myScroll.refresh();     // Remember to refresh when contents are loaded (ie: on ajax completion)
+        }, 1000);   // <-- Simulate network congestion, remove setTimeout from production!
     }
 
     function pullUpAction () {
-        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+        setTimeout(function () {    // <-- Simulate network congestion, remove setTimeout from production!
             var el, li, i;
             el = document.getElementById('thelist');
 
@@ -98,8 +103,8 @@
                 el.appendChild(li, el.childNodes[0]);
             }
 
-            myScroll.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
-        }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+            myScroll.refresh();     // Remember to refresh when contents are loaded (ie: on ajax completion)
+        }, 1000);   // <-- Simulate network congestion, remove setTimeout from production!
     }
 
     function loaded() {
@@ -143,11 +148,11 @@
                 if (pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'loading';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';
-                    pullDownAction();	// Execute custom function (ajax call?)
+                    pullDownAction();   // Execute custom function (ajax call?)
                 } else if (pullUpEl.className.match('flip')) {
                     pullUpEl.className = 'loading';
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';
-                    pullUpAction();	// Execute custom function (ajax call?)
+                    pullUpAction(); // Execute custom function (ajax call?)
                 }
             }
         });
@@ -159,5 +164,4 @@
 
     document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 </script>
-<script src="./js/index.js"></script>
 </html>
