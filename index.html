@@ -32,20 +32,21 @@
         var myScroll;*/
         function loaded() {
             myScroll = new IScroll('#wrapper',{
-                scrollbars: true
+                scrollbars: true,
+                click: true
             });
         }
 
         function loaded1(){
             myScroll2=new IScroll("#wrapper2",{
-                scrollbars: true
+                scrollbars: true,
+                click: true
             });
         }
 
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
             capture: false,
-            passive: false,
-            click: true
+            passive: false
         } : false);
         /*function loaded(){
             setTimeout(function(){
