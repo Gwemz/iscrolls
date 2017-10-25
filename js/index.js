@@ -7,11 +7,11 @@ $(function () {
             $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img src="'+item.images[0]+'" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').appendTo($('#thelist'));
             // myscroll.refresh(); 
         })
-        /*setTimeout(function(){
-            myscroll=new iScroll("wrapper");
-        },1000)*/
+        setTimeout(function(){
+            loaded()
+        },1000)
         // myscroll=new iScroll("wrapper");
-        myScroll.refresh();
+        // myScroll.refresh();
     });
 
     $('#page_content').on('click', '.back', function () {
@@ -34,7 +34,10 @@ $(function () {
                 myscroll2=new iScroll("wrapper2");
             },1000)*/
             // myscroll2=new iScroll("wrapper2");
-            myScroll2.refresh();
+            // myScroll2.refresh();
+            setTimeout(function(){
+                loaded1()
+            },1000)
         })
     })
 

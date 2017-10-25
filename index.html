@@ -23,16 +23,29 @@
     <link rel="stylesheet" href="./css/font-awesome-ie7.min.css">
     <!-- iscroll -->
     <script type="text/javascript" src="./js/iscroll.js"></script>
-    <script type="text/javascript" src="./js/iscroll-probe.js"></script>
+    <script type="text/javascript" src="./js/demoUtils.js"></script>
+    <!--<script type="text/javascript" src="./js/iscroll-probe.js"></script>-->
     <script type="text/javascript">
         var myScroll,myScroll2;
         /*myScroll = new IScroll('#wrapper');
         myScroll2=new IScroll("#wrapper2");
         var myScroll;*/
         function loaded() {
-            myScroll = new IScroll('#wrapper');
-            myScroll2=new IScroll("#wrapper2");
+            myScroll = new IScroll('#wrapper',{
+                scrollbars: true
+            });
         }
+
+        function loaded1(){
+            myScroll2=new IScroll("#wrapper2",{
+                scrollbars: true
+            });
+        }
+
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
+            capture: false,
+            passive: false
+        } : false);
         /*function loaded(){
             setTimeout(function(){
               myscroll=new iScroll("wrapper");
@@ -43,11 +56,9 @@
         // window.addEventListener("load",loaded,false); 
         /*document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         document.addEventListener('DOMContentLoaded', loaded, false);*/
-        
     </script>
 </head>
-<body onload="loaded()">
-
+<body>
 <!-- <div id="header">
     <a href="http://gwem.tk"></a>
 </div> -->
@@ -70,7 +81,7 @@
 <div id="wrapper2">
     <div>
         <div class="back  icon-chevron-left">
-                    
+                            
         </div>
         <div class="page_content">
                        
@@ -88,6 +99,5 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-
 <script src="./js/index.js"></script>
 </html>
