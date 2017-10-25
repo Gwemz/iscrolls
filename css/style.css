@@ -189,7 +189,7 @@ section.page img {
   -ms-transition: all .5s linear .1s;
   -o-transition: all .5s linear .1s;
   transition: all .5s linear .1s;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 #content.active {
   left: 0;

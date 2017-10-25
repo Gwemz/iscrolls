@@ -34,7 +34,7 @@ $(function () {
             $('<link rel="stylesheet" href="'+data.CONTENTS.css[0]+'"></link>').appendTo($('head'));
             $('.page_content')[0].innerHTML = data.CONTENTS.body;
             $('.headline').remove();
-            myScroll.refresh(); 
+            // myScroll.refresh(); 
         })
     })
 
