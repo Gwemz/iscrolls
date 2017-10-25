@@ -44,7 +44,8 @@
 
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
             capture: false,
-            passive: false
+            passive: false,
+            click: true
         } : false);
         /*function loaded(){
             setTimeout(function(){

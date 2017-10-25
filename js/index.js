@@ -23,7 +23,7 @@ $(function () {
     },2000)
 
     //内容页信息展示
-    $('#thelist').on('touchstart','li',function () {
+    $('#thelist').on('click','li',function () {
         $('#wrapper2').addClass('active');
         var id=$(this).find('.gwt_home').attr('id');
         $.getJSON("https://zhihu-daily.leanapp.cn/api/v1/contents/" + id + "").done(function (data) {
