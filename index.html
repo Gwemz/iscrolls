@@ -21,8 +21,32 @@
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <!--IE7兼容-->
     <link rel="stylesheet" href="./css/font-awesome-ie7.min.css">
+    <!-- iscroll -->
+    <script type="text/javascript" src="./js/iscroll.js"></script>
+    <script type="text/javascript" src="./js/iscroll-probe.js"></script>
+    <script type="text/javascript">
+        var myScroll,myScroll2;
+        /*myScroll = new IScroll('#wrapper');
+        myScroll2=new IScroll("#wrapper2");
+        var myScroll;*/
+        function loaded() {
+            myScroll = new IScroll('#wrapper');
+            myScroll2=new IScroll("#wrapper2");
+        }
+        /*function loaded(){
+            setTimeout(function(){
+              myscroll=new iScroll("wrapper");
+              myscroll2=new iScroll("wrapper2");
+            },1000);
+        }
+        loaded();*/
+        // window.addEventListener("load",loaded,false); 
+        /*document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        document.addEventListener('DOMContentLoaded', loaded, false);*/
+        
+    </script>
 </head>
-<body>
+<body onload="loaded()">
 
 <!-- <div id="header">
     <a href="http://gwem.tk"></a>
@@ -41,11 +65,9 @@
         <!-- <div id="pullUp">
             <span class="pullUpIcon"></span><span class="pullUpLabel">上拉刷新</span>
         </div> -->
-        
-        
     </div>
 </div>
-<section id="content" class="wrapper2">
+<div id="wrapper2">
     <div class="back  icon-chevron-left">
             
     </div>
@@ -55,7 +77,7 @@
     <div class="top">
         <a href="#"></a>
     </div>
-</section>
+</div>
 <!-- <div id="footer"></div>
 
 </body> -->
@@ -64,114 +86,6 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="./js/iscroll.js"></script>
+
 <script src="./js/index.js"></script>
-<script type="text/javascript">
-    /*var myScroll,
-        pullDownEl, pullDownOffset,
-        pullUpEl, pullUpOffset,
-        generatedCount = 0;*/
-
-    var myscroll,myscroll2;
-    function loaded(){
-        setTimeout(function(){
-          myscroll=new iScroll("wrapper");
-          myscroll2=new iScroll(".wrapper2");
-        },1000);
-    }
-    // window.addEventListener("load",loaded,false); 
-    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    document.addEventListener('DOMContentLoaded', loaded, false);
-    
-       
-
-    /*function pullDownAction () {
-        setTimeout(function () {    // <-- Simulate network congestion, remove setTimeout from production!
-            var el, li, i;
-            el = document.getElementById('thelist');
-
-            for (i=0; i<3; i++) {
-                li = document.createElement('li');
-                li.innerText = 'Generated row ' + (++generatedCount);
-                el.insertBefore(li, el.childNodes[0]);
-            }
-
-            myScroll.refresh();     // Remember to refresh when contents are loaded (ie: on ajax completion)
-        }, 1000);   // <-- Simulate network congestion, remove setTimeout from production!
-    }
-    
-    function pullUpAction () {
-        setTimeout(function () {    // <-- Simulate network congestion, remove setTimeout from production!
-            var el, li, i;
-            el = document.getElementById('thelist');
-
-            for (i=0; i<3; i++) {
-                li = document.createElement('li');
-                li.innerText = 'Generated row ' + (++generatedCount);
-                el.appendChild(li, el.childNodes[0]);
-            }
-
-            myScroll.refresh();     // Remember to refresh when contents are loaded (ie: on ajax completion)
-        }, 1000);   // <-- Simulate network congestion, remove setTimeout from production!
-    }*/
-    
-    /*function loaded() {
-        pullDownEl = document.getElementById('pullDown');
-        pullDownOffset = pullDownEl.offsetHeight;
-        pullUpEl = document.getElementById('pullUp');
-        pullUpOffset = pullUpEl.offsetHeight;
-        
-        myScroll = new iScroll('wrapper', {
-            useTransition: true,
-            topOffset: pullDownOffset,
-            onRefresh: function () {
-                if (pullDownEl.className.match('loading')) {
-                    pullDownEl.className = '';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
-                } else if (pullUpEl.className.match('loading')) {
-                    pullUpEl.className = '';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
-                }
-            },
-            onScrollMove: function () {
-                if (this.y > 5 && !pullDownEl.className.match('flip')) {
-                    pullDownEl.className = 'flip';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Release to refresh...';
-                    this.minScrollY = 0;
-                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
-                    pullDownEl.className = '';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
-                    this.minScrollY = -pullDownOffset;
-                } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
-                    pullUpEl.className = 'flip';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Release to refresh...';
-                    this.maxScrollY = this.maxScrollY;
-                } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
-                    pullUpEl.className = '';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
-                    this.maxScrollY = pullUpOffset;
-                }
-            },
-            onScrollEnd: function () {
-                if (pullDownEl.className.match('flip')) {
-                    pullDownEl.className = 'loading';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';
-                    // pullDownAction();   // Execute custom function (ajax call?)
-                } else if (pullUpEl.className.match('flip')) {
-                    pullUpEl.className = 'loading';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';
-                    // pullUpAction(); // Execute custom function (ajax call?)
-                }
-            }
-        });
-
-        setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
-    }
-    
-    document.addEventListener('touchmove', function (e) { 
-        e.preventDefault(); 
-    }, false);
-    
-    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);*/
-</script>
 </html>
