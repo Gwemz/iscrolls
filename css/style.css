@@ -44,7 +44,7 @@ body {
   padding: 0;
   border-top: 1px solid #444;
 }
-#wrapper {
+#wrapper{
   /* width: 100%;
   height: 100%; */
   position: absolute;
@@ -53,7 +53,8 @@ body {
   top:0;
   /*bottom: 48px;*/
   bottom:0;
-  left: -9999px;
+  /*left: -9999px;*/
+  left:0;
   width: 100%;
   background: #aaa;
   overflow: auto;

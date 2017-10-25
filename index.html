@@ -32,29 +32,30 @@
 </section>-->
 <div id="wrapper">
     <div id="scroller">
-        <div id="pullDown">
+        <!-- <div id="pullDown">
             <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新</span>
-        </div>
+        </div> -->
         <ul id="thelist">
         
         </ul>
-        <div id="pullUp">
+        <!-- <div id="pullUp">
             <span class="pullUpIcon"></span><span class="pullUpLabel">上拉刷新</span>
-        </div>
+        </div> -->
         
-        <section id="content">
-            <div class="back  icon-chevron-left">
-                
-            </div>
-            <div class="page_content">
-
-            </div>
-            <div class="top">
-                <a href="#"></a>
-            </div>
-        </section>
+        
     </div>
 </div>
+<section id="content" class="wrapper2">
+    <div class="back  icon-chevron-left">
+            
+    </div>
+    <div class="page_content">
+           
+    </div>
+    <div class="top">
+        <a href="#"></a>
+    </div>
+</section>
 <!-- <div id="footer"></div>
 
 </body> -->
@@ -64,13 +65,27 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="./js/iscroll.js"></script>
+<script src="./js/index.js"></script>
 <script type="text/javascript">
-    var myScroll,
+    /*var myScroll,
         pullDownEl, pullDownOffset,
         pullUpEl, pullUpOffset,
-        generatedCount = 0;
-        
-    function pullDownAction () {
+        generatedCount = 0;*/
+
+    var myscroll,myscroll2;
+    function loaded(){
+        setTimeout(function(){
+          myscroll=new iScroll("wrapper");
+          myscroll2=new iScroll(".wrapper2");
+        },1000);
+    }
+    // window.addEventListener("load",loaded,false); 
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    document.addEventListener('DOMContentLoaded', loaded, false);
+    
+       
+
+    /*function pullDownAction () {
         setTimeout(function () {    // <-- Simulate network congestion, remove setTimeout from production!
             var el, li, i;
             el = document.getElementById('thelist');
@@ -98,14 +113,14 @@
 
             myScroll.refresh();     // Remember to refresh when contents are loaded (ie: on ajax completion)
         }, 1000);   // <-- Simulate network congestion, remove setTimeout from production!
-    }
+    }*/
     
-    function loaded() {
+    /*function loaded() {
         pullDownEl = document.getElementById('pullDown');
         pullDownOffset = pullDownEl.offsetHeight;
         pullUpEl = document.getElementById('pullUp');
         pullUpOffset = pullUpEl.offsetHeight;
-
+        
         myScroll = new iScroll('wrapper', {
             useTransition: true,
             topOffset: pullDownOffset,
@@ -141,11 +156,11 @@
                 if (pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'loading';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';
-                    pullDownAction();   // Execute custom function (ajax call?)
+                    // pullDownAction();   // Execute custom function (ajax call?)
                 } else if (pullUpEl.className.match('flip')) {
                     pullUpEl.className = 'loading';
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';
-                    pullUpAction(); // Execute custom function (ajax call?)
+                    // pullUpAction(); // Execute custom function (ajax call?)
                 }
             }
         });
@@ -154,11 +169,9 @@
     }
     
     document.addEventListener('touchmove', function (e) { 
-        // e.preventDefault(); 
+        e.preventDefault(); 
     }, false);
     
-    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);*/
 </script>
-
-<script src="./js/index.js"></script>
 </html>

@@ -4,7 +4,7 @@ $(function () {
         $.each(data.STORIES.stories, function (i, item) {
             // $('<div class="title" id=' + item.id + '><span>' + item.title + '</span><img class="img" src="' + item.images[0] + '"></img></div>').appendTo($('#content'));
             $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img src="'+item.images[0]+'" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').appendTo($('#thelist'));
-            myScroll.refresh(); 
+            // myScroll.refresh(); 
         })
     });
 
@@ -32,7 +32,7 @@ $(function () {
     $('.back').on('click',function () {
         $('#content').removeClass('active');
     })
-
+    
     //点击按钮回到页面顶部
     $('.top').on('click',function () {
         $('#content').animate({scrollTop: 0},1000);
