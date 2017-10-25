@@ -5,13 +5,10 @@ $(function () {
         $.each(data.STORIES.stories, function (i, item) {
             // $('<div class="title" id=' + item.id + '><span>' + item.title + '</span><img class="img" src="' + item.images[0] + '"></img></div>').appendTo($('#content'));
             $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img src="'+item.images[0]+'" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').appendTo($('#thelist'));
-            // myscroll.refresh(); 
         })
         setTimeout(function(){
             loaded()
         },1000)
-        // myscroll=new iScroll("wrapper");
-        // myScroll.refresh();
     });
 
     $('#page_content').on('click', '.back', function () {
@@ -30,13 +27,9 @@ $(function () {
             $('<link rel="stylesheet" href="'+data.CONTENTS.css[0]+'"></link>').appendTo($('head'));
             $('.page_content')[0].innerHTML = data.CONTENTS.body;
             $('.headline').remove();
-            /*setTimeout(function(){
-                myscroll2=new iScroll("wrapper2");
-            },1000)*/
-            // myscroll2=new iScroll("wrapper2");
-            // myScroll2.refresh();
+            myScroll2 = {};
             setTimeout(function(){
-                loaded1()
+                loaded1();
             },1000)
         })
     })
