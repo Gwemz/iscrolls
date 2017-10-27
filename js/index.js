@@ -6,14 +6,14 @@ $(function () {
             // $('<div class="title" id=' + item.id + '><span>' + item.title + '</span><img class="img" src="' + item.images[0] + '"></img></div>').appendTo($('#content'));
             $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img class="lazy" data-original="'+item.images[0]+'" src="" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').appendTo($('#thelist'));
         })
-        // setTimeout(function(){
+        setTimeout(function(){
             loaded()
             $("img.lazy").lazyload({
                 effect:"fadeIn",
                 threshold : 400,
                 container: $("#wrapper")
             });
-        // },1000)
+        },1000)
     });
 
     $('#page_content').on('click', '.back', function () {
@@ -34,7 +34,7 @@ $(function () {
             $('.headline').remove();
             myScroll2 = {};
             // setTimeout(function(){
-                loaded1();
+                // loaded1();
             // },1000)
         })
     })
