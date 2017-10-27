@@ -67,10 +67,8 @@
 <script type="text/javascript" src="./js/iscroll.js"></script>
 <script type="text/javascript" src="./js/lazyload.js"></script>
 <script type="text/javascript">
+    //iscroll定义
     var myScroll,myScroll2;
-    /*myScroll = new IScroll('#wrapper');
-    myScroll2=new IScroll("#wrapper2");
-    var myScroll;*/
     function loaded() {
         myScroll = new IScroll('#wrapper',{
             scrollbars: true,
@@ -90,22 +88,15 @@
             click: true
         });
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-        myScroll.on('scrollEnd',function () {
+        myScroll2.on('scrollEnd',function () {
             $('#wrapper2').trigger('scroll');
         })
     }
-
-    
-    /*function loaded(){
-        setTimeout(function(){
-          myscroll=new iScroll("wrapper");
-          myscroll2=new iScroll("wrapper2");
-        },1000);
-    }
-    loaded();*/
-    // window.addEventListener("load",loaded,false); 
-    /*document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    document.addEventListener('DOMContentLoaded', loaded, false);*/
 </script>
 <script src="./js/index.js"></script>
+<script>
+$(function(){
+    
+})
+</script>
 </html>

@@ -4,7 +4,7 @@ $(function () {
     $.getJSON(flickerAPI, {}).done(function (data) {
         $.each(data.STORIES.stories, function (i, item) {
             // $('<div class="title" id=' + item.id + '><span>' + item.title + '</span><img class="img" src="' + item.images[0] + '"></img></div>').appendTo($('#content'));
-            $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img class="lazy" data-original="'+item.images[0]+'" src="" alt="加载失败"><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').appendTo($('#thelist'));
+            $('<li><div class="row"><div class="col-sm-6 col-md-4"><div class="thumbnail gwt_home" id="'+item.id+'"><img class="lazy" data-original="'+item.images[0]+'" src="" alt=""><div class="caption"><p>'+item.title+'</p></div></div></div></div></li>').appendTo($('#thelist'));
         })
         setTimeout(function(){
             loaded()
@@ -13,7 +13,7 @@ $(function () {
                 threshold : 400,
                 container: $("#wrapper")
             });
-        },1000)
+        },400)
     });
 
     $('#page_content').on('click', '.back', function () {
